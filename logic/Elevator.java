@@ -3,14 +3,14 @@ import java.util.*;
 public class Elevator {
 
     int id;
-    int currentFloor;
-    Direction direction = Direction.IDLE;
+    public int currentFloor;
+    public Direction direction = Direction.IDLE;
 
-    int capacity = 0;
-    int maxCapacity;
+    public int capacity = 0;
+    public int maxCapacity;
 
-    TreeSet<Integer> upStops = new TreeSet<>();
-    TreeSet<Integer> downStops = new TreeSet<>(Collections.reverseOrder());
+    public TreeSet<Integer> upStops = new TreeSet<>();
+    public TreeSet<Integer> downStops = new TreeSet<>(Collections.reverseOrder());
 
     public Elevator(int id, int startFloor, int maxCapacity) {
         this.id = id;
