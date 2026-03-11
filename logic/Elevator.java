@@ -23,7 +23,7 @@ public class Elevator {
     }
 
     public void addStop(int floor) {
-
+       if(floor==currentFloor) {return;}
         if (floor > currentFloor)
             upStops.add(floor);
         else if (floor < currentFloor)
