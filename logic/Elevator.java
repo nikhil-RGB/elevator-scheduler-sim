@@ -1,6 +1,6 @@
 package logic;
 import java.util.*;
-class Elevator {
+public class Elevator {
 
     int id;
     int currentFloor;
@@ -12,17 +12,17 @@ class Elevator {
     TreeSet<Integer> upStops = new TreeSet<>();
     TreeSet<Integer> downStops = new TreeSet<>(Collections.reverseOrder());
 
-    Elevator(int id, int startFloor, int maxCapacity) {
+    public Elevator(int id, int startFloor, int maxCapacity) {
         this.id = id;
         this.currentFloor = startFloor;
         this.maxCapacity = maxCapacity;
     }
 
-    boolean isFull() {
+    public boolean isFull() {
         return capacity >= maxCapacity;
     }
 
-    void addStop(int floor) {
+    public void addStop(int floor) {
 
         if (floor > currentFloor)
             upStops.add(floor);
@@ -34,7 +34,7 @@ class Elevator {
         }
     }
 
-    void move() {
+    public void move() {
 
         if (direction == Direction.UP) {
 
@@ -62,7 +62,7 @@ class Elevator {
         }
     }
 
-    void stop() {
+    public void stop() {
 
         upStops.remove(currentFloor);
         downStops.remove(currentFloor);
