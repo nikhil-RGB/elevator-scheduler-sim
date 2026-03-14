@@ -2,7 +2,7 @@
 
 <br/>
 
-<img width="310" height="380" alt="image" align="center" src="https://github.com/user-attachments/assets/ad5d9dfd-5d99-4044-a6a9-7a3689c4eedf" />
+<img width="310" height="380" alt="image" align="center" src="ELEVATOR_SIM_EXAMPLE.jpeg" />
 
 
 
@@ -55,6 +55,10 @@ The program demonstrates:
   Timer repeats  
   -> update() runs again  
   -> system continues simulation
+
+### Passenger Simulation:
+
+- Each elevator stop randomly simulates passengers entering and exiting (0–2 per stop), and new     passengers request random destination floors. The simulation can be toggled on or off via a checkbox in the UI, allowing the elevator system to run deterministically or with stochastic passenger behaviour.
 
 ### To Run:
 
