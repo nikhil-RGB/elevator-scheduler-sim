@@ -129,12 +129,50 @@ public class Elevator {
     		this.addStop(floor_stop);
     		//Adding additional stops here, simulated to be requested by entering passengers. Passengers may request the same floor
     	}
-        
+    	
+    	controller.logArea.append(
+    		    "Elevator " + id +
+    		    " \n| floor " + currentFloor +
+    		    " \n| exited: " + exiting +
+    		    " \n| entered: " + entering +
+    		    " \n| capacity: " + capacity +
+    		    " \n| New Requests: "+newStops.toString()+
+    		    "\n"
+    		);
+
+    		
         
         
         }
         else if (capacity > 0)
-            capacity--;
+        {capacity--;
+        controller.logArea.append(
+    		    "Elevator " + id +
+    		    " \n| floor " + currentFloor +
+    		    " \n| exited: 1" +
+    		    " \n| entered: 0"+
+    		    " \n| capacity: " + capacity +
+    		    "\n"
+    		);
+
+    		
+        }
+        else 
+        {
+        	controller.logArea.append(
+        		    "Elevator " + id +
+        		    " \n| floor " + currentFloor +
+        		    " \n| exited: 0" +
+        		    " \n| entered: 0"+
+        		    " \n| capacity: " + capacity +
+        		    "\n"
+        		);
+        }
+     // auto scroll
+		controller.logArea.setCaretPosition(
+		    controller.logArea.getDocument().getLength()
+		);
+        
     }
 }
 
