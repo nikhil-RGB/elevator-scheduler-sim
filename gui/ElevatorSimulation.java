@@ -42,7 +42,7 @@ public class ElevatorSimulation {
         frame.setLayout(new BorderLayout());
         frame.setResizable(true);
 
-        gridPanel = new JPanel(new GridLayout(FLOORS, ELEVATORS + 2));
+        gridPanel = new JPanel(new GridLayout(FLOORS, ELEVATORS + 3));
 
         for (int floor = FLOORS - 1; floor >= 0; floor--) {
 
@@ -58,7 +58,18 @@ public class ElevatorSimulation {
 
             up.addActionListener(e -> requestElevator(f, Direction.UP));
             down.addActionListener(e -> requestElevator(f, Direction.DOWN));
+            
+            JLabel floorLabel = new JLabel("Floor " + f, SwingConstants.CENTER);
 
+            floorLabel.setFont(new Font("Arial", Font.BOLD, 18));
+            floorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            floorLabel.setVerticalAlignment(SwingConstants.CENTER);
+            floorLabel.setOpaque(true);
+            floorLabel.setBackground(Color.LIGHT_GRAY);
+            floorLabel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+
+            gridPanel.add(floorLabel);
+            
             gridPanel.add(up);
             gridPanel.add(down);
 

@@ -137,6 +137,7 @@ public class Elevator {
     		    " \n| entered: " + entering +
     		    " \n| capacity: " + capacity +
     		    " \n| New Requests: "+newStops.toString()+
+    		    " \n| Direction: " + this.direction.toString()+
     		    "\n"
     		);
 
@@ -152,6 +153,7 @@ public class Elevator {
     		    " \n| exited: 1" +
     		    " \n| entered: 0"+
     		    " \n| capacity: " + capacity +
+    		    " \n| Direction: " + this.direction.toString()+
     		    "\n"
     		);
 
@@ -165,6 +167,7 @@ public class Elevator {
         		    " \n| exited: 0" +
         		    " \n| entered: 0"+
         		    " \n| capacity: " + capacity +
+        		    " \n| Direction: " + this.direction.toString()+
         		    "\n"
         		);
         }
