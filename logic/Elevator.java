@@ -1,7 +1,9 @@
 package logic;
+import java.awt.Color;
 import java.util.*;
+import gui.ElevatorSimulation;
 public class Elevator {
-
+    ElevatorSimulation controller;
     int id;
     public int currentFloor;
     public Direction direction = Direction.IDLE;
@@ -12,10 +14,11 @@ public class Elevator {
     public TreeSet<Integer> upStops = new TreeSet<>();
     public TreeSet<Integer> downStops = new TreeSet<>(Collections.reverseOrder());
 
-    public Elevator(int id, int startFloor, int maxCapacity) {
+    public Elevator(int id, int startFloor, int maxCapacity,ElevatorSimulation cont) {
         this.id = id;
         this.currentFloor = startFloor;
         this.maxCapacity = maxCapacity;
+        this.controller=cont;
     }
 
     public boolean isFull() {
@@ -23,7 +26,10 @@ public class Elevator {
     }
 
     public void addStop(int floor) {
-       if(floor==currentFloor) {return;}
+       if(floor==currentFloor) {
+    	   stop();
+    	   return;
+    	   }
         if (floor > currentFloor)
             upStops.add(floor);
         else if (floor < currentFloor)
@@ -63,7 +69,14 @@ public class Elevator {
     }
 
     public void stop() {
-
+    	//At each stop increase and decrease capacity from 1-3, create new random stops based on people who enter
+       
+        	this.controller.upButtons[currentFloor].setBackground(Color.GRAY);
+        
+       
+        	this.controller.downButtons[currentFloor].setBackground(Color.GRAY);
+       
+        
         upStops.remove(currentFloor);
         downStops.remove(currentFloor);
 

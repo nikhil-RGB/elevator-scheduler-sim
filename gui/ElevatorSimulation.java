@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import javax.swing.Timer;
 
@@ -17,6 +16,9 @@ public class ElevatorSimulation {
 
     Elevator[] elevators = new Elevator[ELEVATORS];
     JLabel[][] elevatorCells = new JLabel[FLOORS][ELEVATORS];
+    
+    public JButton[] upButtons=new JButton[FLOORS];
+    public JButton[] downButtons=new JButton[FLOORS];
 
     java.util.List<Request> pendingRequests = new ArrayList<>();
 
@@ -27,7 +29,7 @@ public class ElevatorSimulation {
     void start() {
 
         for (int i = 0; i < ELEVATORS; i++) {
-            elevators[i] = new Elevator(i, 0, 8);
+            elevators[i] = new Elevator(i, 0, 8,this);
         }
 
         frame = new JFrame("Elevator Simulation");
@@ -38,10 +40,15 @@ public class ElevatorSimulation {
 
         for (int floor = FLOORS - 1; floor >= 0; floor--) {
 
-            int f = floor;
+            int f= floor;
 
             JButton up = new JButton("↑");
             JButton down = new JButton("↓");
+            up.setBackground(Color.gray);
+            down.setBackground(Color.gray);
+            
+            this.upButtons[f]=up;
+            this.downButtons[f]=down;
 
             up.addActionListener(e -> requestElevator(f, Direction.UP));
             down.addActionListener(e -> requestElevator(f, Direction.DOWN));
@@ -67,7 +74,9 @@ public class ElevatorSimulation {
     }
 
     void requestElevator(int floor, Direction dir) {
-        pendingRequests.add(new Request(floor, dir));
+    	JButton floorButton=dir.equals(Direction.DOWN)?this.downButtons[floor]:this.upButtons[floor];
+        floorButton.setBackground(Color.ORANGE);
+    	pendingRequests.add(new Request(floor, dir));
     }
 
     void update() {
