@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.util.*;
 import gui.ElevatorSimulation;
 public class Elevator {
+	private static Random r=new Random();
     ElevatorSimulation controller;
     int id;
     public int currentFloor;
@@ -79,8 +80,60 @@ public class Elevator {
         
         upStops.remove(currentFloor);
         downStops.remove(currentFloor);
-
-        if (capacity > 0)
+        if(this.controller.isPassengerBehaviourEnabled) 
+        {
+        	
+        	int entering=r.nextInt(3);
+        	int exiting=r.nextInt(3);
+        //Simulating passengers entering and exiting.
+        if(capacity>exiting) 
+        {
+        	this.capacity=capacity-exiting;
+        }	
+        else if(capacity>0) 
+        {
+        	exiting=1;
+        	--this.capacity;
+        }
+        else 
+        {
+        	exiting=0;
+        }
+        
+        
+        if(!((capacity+entering)>ElevatorSimulation.MAX_CAPACITY)) 
+        {
+        	this.capacity+=entering;
+        }
+        else if(capacity<ElevatorSimulation.MAX_CAPACITY) 
+        {
+        	++this.capacity;
+        	entering=1;
+        }
+        else 
+        {
+        	entering=0;
+        }
+        
+    	HashSet<Integer> newStops=new HashSet<>(0);
+    	for(int i=0;i<entering;++i) 
+    	{
+    		int floor=0;
+    		do
+    		{floor=r.nextInt(ElevatorSimulation.FLOORS);}
+    		while(floor==currentFloor);
+    		newStops.add(floor);
+    	}
+    	for(int floor_stop:newStops) 
+    	{
+    		this.addStop(floor_stop);
+    		//Adding additional stops here, simulated to be requested by entering passengers. Passengers may request the same floor
+    	}
+        
+        
+        
+        }
+        else if (capacity > 0)
             capacity--;
     }
 }

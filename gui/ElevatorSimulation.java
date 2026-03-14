@@ -8,11 +8,12 @@ import javax.swing.Timer;
 import logic.*;
 public class ElevatorSimulation {
 
-    static final int FLOORS = 10;
-    static final int ELEVATORS = 4;
-
+    public static final int FLOORS = 10;
+    public static final int ELEVATORS = 4;
+    public static final int MAX_CAPACITY=10;
     JFrame frame;
     JPanel gridPanel;
+    public boolean isPassengerBehaviourEnabled=true;
 
     Elevator[] elevators = new Elevator[ELEVATORS];
     JLabel[][] elevatorCells = new JLabel[FLOORS][ELEVATORS];
@@ -29,7 +30,7 @@ public class ElevatorSimulation {
     void start() {
 
         for (int i = 0; i < ELEVATORS; i++) {
-            elevators[i] = new Elevator(i, 0, 8,this);
+            elevators[i] = new Elevator(i, 0, MAX_CAPACITY,this);
         }
 
         frame = new JFrame("Elevator Simulation");
